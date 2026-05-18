@@ -13,48 +13,61 @@ class WeatherEngine:
 
         hour = world.time["hour"]
 
-        # Pilihan cuaca berdasarkan waktu
-        if 6 <= hour < 12:
+        weather_types = [
+            "Sunny",
+            "Cloudy",
+            "Light Rain",
+            "Heavy Rain"
+        ]
 
-            weather_type = random.choices(
-                ["Sunny", "Cloudy"],
-                weights=[70, 30]
-            )[0]
+        # =========================
+        # WEATHER PROBABILITY
+        # =========================
 
-        elif 12 <= hour < 18:
+        # Siang
+        if 6 <= hour < 18:
 
-            weather_type = random.choices(
-                ["Hot", "Sunny", "Cloudy"],
-                weights=[50, 30, 20]
-            )[0]
+            weights = [40, 35, 20, 5]
+
+        # Malam
+        else:
+
+            weights = [15, 45, 30, 10]
+
+        weather_type = random.choices(
+            weather_types,
+            weights=weights
+        )[0]
+
+        # =========================
+        # WEATHER PARAMETERS
+        # =========================
+
+        if weather_type == "Sunny":
+
+            outside_temp = random.randint(30, 34)
+            outside_humidity = random.randint(45, 65)
+            duration = random.randint(120, 360)
+
+        elif weather_type == "Cloudy":
+
+            outside_temp = random.randint(26, 30)
+            outside_humidity = random.randint(65, 85)
+            duration = random.randint(90, 240)
+
+        elif weather_type == "Light Rain":
+
+            outside_temp = random.randint(24, 28)
+            outside_humidity = random.randint(80, 92)
+            duration = random.randint(60, 180)
 
         else:
 
-            weather_type = random.choices(
-                ["Cloudy", "Light Rain"],
-                weights=[70, 30]
-            )[0]
+            outside_temp = random.randint(22, 26)
+            outside_humidity = random.randint(90, 98)
+            duration = random.randint(45, 120)
 
-        # Temperature & humidity
-        if weather_type == "Sunny":
-            outside_temp = random.randint(29, 32)
-            outside_humidity = random.randint(50, 65)
-
-        elif weather_type == "Hot":
-            outside_temp = random.randint(32, 35)
-            outside_humidity = random.randint(40, 55)
-
-        elif weather_type == "Cloudy":
-            outside_temp = random.randint(25, 29)
-            outside_humidity = random.randint(70, 85)
-
-        elif weather_type == "Light Rain":
-            outside_temp = random.randint(23, 27)
-            outside_humidity = random.randint(85, 95)
-
-        # Durasi cuaca
-        duration = random.randint(60, 240)
-
+        # Save weather
         world.weather = {
             "weather_type": weather_type,
             "outside_temp": outside_temp,

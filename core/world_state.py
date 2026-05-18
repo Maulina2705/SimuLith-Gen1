@@ -31,3 +31,7 @@ class WorldState:
         }
         self.energy = {}
         self.sensors = {}
+        self.events = {
+            "active_event": None,
+            "event_remaining": 0
+        }

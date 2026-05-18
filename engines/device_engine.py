@@ -1,114 +1,174 @@
+import random
+
 class DeviceEngine:
 
     def update(self, world):
 
         activity = world.human["activity"]
 
+        hour = world.time["hour"]
+
+        indoor_brightness = world.environment["indoor_brightness"]
+
         devices = {}
 
-        # AC Logic
-        inside_temp = world.environment["inside_temp"]
+        # AC LOGIC
+        occupancy = world.human["occupancy"]
 
-        target_temp = 16
+        if occupancy > 0:
 
-        temp_difference = inside_temp - target_temp
+            inside_temp = world.environment["inside_temp"]
 
-        ac_power = 0
-        ac_mode = "OFF"
+            if inside_temp >= 28:
 
-        if world.human["occupancy"] > 0:
-
-            # MAX COOLING
-            if temp_difference > 8:
+                ac_state = "MAX_COOLING"
                 ac_power = 750
-                ac_mode = "MAX_COOLING"
+                target_temp = 16
 
-            # NORMAL COOLING
-            elif temp_difference > 4:
-                ac_power = 500
-                ac_mode = "COOLING"
+            elif inside_temp >= 25:
 
-            # MAINTAIN TEMP
-            elif temp_difference > 1:
-                ac_power = 280
-                ac_mode = "MAINTAIN"
+                ac_state = "COOLING"
+                ac_power = 520
+                target_temp = 18
 
-            # IDLE
+            elif inside_temp >= 23:
+
+                ac_state = "MAINTAIN"
+                ac_power = 320
+                target_temp = 21
+
             else:
+
+                ac_state = "IDLE"
                 ac_power = 120
-                ac_mode = "IDLE"
+                target_temp = 22
+
+        else:
+
+            ac_state = "OFF"
+            ac_power = 0
+            target_temp = None
 
         devices["ac"] = {
-            "state": ac_mode,
+            "state": ac_state,
             "target_temp": target_temp,
             "power_w": ac_power
         }
 
-        # PC Logic
+        # MAIN LAMP
+        lamp_state = "OFF"
+        lamp_power = 0
+
+        # malam
+        if hour >= 18 or hour <= 5:
+
+            if activity in ["Gaming", "Watching TV"]:
+
+                if random.random() < 0.4:
+
+                    lamp_state = "ON"
+                    lamp_power = 18
+
+            elif activity in ["Side Job", "Cooking"]:
+
+                lamp_state = "ON"
+                lamp_power = 18
+
+            elif activity == "Sleeping":
+
+                lamp_state = "OFF"
+                lamp_power = 0
+
+            else:
+
+                if random.random() < 0.5:
+
+                    lamp_state = "ON"
+                    lamp_power = 18
+
+        # siang cloudy
+        elif indoor_brightness < 40:
+
+            if occupancy > 0:
+
+                if random.random() < 0.3:
+
+                    lamp_state = "ON"
+                    lamp_power = 18
+
+        devices["main_lamp"] = {
+            "state": lamp_state,
+            "power_w": lamp_power
+        }
+
+        # DESK LAMP
+        desk_state = "OFF"
+        desk_power = 0
+
+        if activity in ["Gaming", "Side Job"]:
+
+            desk_state = "ON"
+            desk_power = 8
+
+        devices["desk_lamp"] = {
+            "state": desk_state,
+            "power_w": desk_power
+        }
+
+        # PC LOGIC
+        pc_state = "OFF"
+        pc_power = 0
+
         if activity == "Gaming":
-            devices["pc"] = {
-                "state": "GAMING",
-                "power_w": 350
-            }
-        else:
-            devices["pc"] = {
-                "state": "OFF",
-                "power_w": 0
-            }
 
-        # Desk Lamp Logic
-        if activity == "Gaming":
-            devices["desk_lamp"] = {
-                "state": "ON",
-                "power_w": 8
-            }
-        else:
-            devices["desk_lamp"] = {
-                "state": "OFF",
-                "power_w": 0
-            }
-        
-        # MAIN LAMP LOGIC
-        if activity == "Sleeping":
+            pc_state = "GAMING"
+            pc_power = random.randint(320, 450)
 
-            devices["main_lamp"] = {
-                "state": "OFF",
-                "power_w": 0
-            }
+        elif activity == "Side Job":
 
-        elif world.human["occupancy"] > 0:
+            if random.random() < 0.7:
 
-            devices["main_lamp"] = {
-                "state": "ON",
-                "power_w": 18
-            }
+                pc_state = "WORKING"
+                pc_power = random.randint(120, 220)
 
-        else:
+        devices["pc"] = {
+            "state": pc_state,
+            "power_w": pc_power
+        }
 
-            devices["main_lamp"] = {
-                "state": "OFF",
-                "power_w": 0
-            }
-        
-        # RICE COOKER LOGIC
+        # TV LOGIC
+        tv_state = "OFF"
+        tv_power = 0
+
+        if activity == "Watching TV":
+
+            tv_state = "ON"
+            tv_power = random.randint(45, 90)
+
+        elif activity == "Gaming":
+
+            if random.random() < 0.25:
+
+                tv_state = "ON"
+                tv_power = random.randint(45, 90)
+
+        devices["tv"] = {
+            "state": tv_state,
+            "power_w": tv_power
+        }
+
+        # RICE COOKER
         rice_state = "OFF"
         rice_power = 0
 
-        activity = world.human["activity"]
+        if activity == "Cooking":
 
-        current_minute = world.time["minute"]
+            rice_state = "COOKING"
+            rice_power = 300
 
-        # Masak pagi
-        if activity in ["Morning Routine", "Cooking"]:
+        else:
 
-            # Awal jam → cooking
-            if current_minute < 20:
-
-                rice_state = "COOKING"
-                rice_power = 300
-
-            # Setelah masak → warm
-            else:
+            if random.random() < 0.15:
 
                 rice_state = "WARM"
                 rice_power = 35
@@ -117,49 +177,19 @@ class DeviceEngine:
             "state": rice_state,
             "power_w": rice_power
         }
-        
-        # WASHING MACHINE LOGIC
-        washing_state = "OFF"
-        washing_power = 0
 
-        current_hour = world.time["hour"]
+        # WASHING MACHINE
+        wm_state = "OFF"
+        wm_power = 0
 
-        current_minute = world.time["minute"]
+        if world.events["active_event"] == "Laundry Day":
 
-        active_event = world.events["active_event"]
-
-        # Laundry Event
-        if active_event == "Laundry Day":
-
-            # Total cycle ~ 60 menit
-
-            # Fill Water
-            if current_minute < 10:
-
-                washing_state = "FILL"
-                washing_power = 120
-
-            # Wash
-            elif current_minute < 35:
-
-                washing_state = "WASH"
-                washing_power = 350
-
-            # Rinse
-            elif current_minute < 50:
-
-                washing_state = "RINSE"
-                washing_power = 250
-
-            # Spin
-            else:
-
-                washing_state = "SPIN"
-                washing_power = 500
+            wm_state = "RUNNING"
+            wm_power = random.randint(300, 450)
 
         devices["washing_machine"] = {
-            "state": washing_state,
-            "power_w": washing_power
+            "state": wm_state,
+            "power_w": wm_power
         }
 
         world.devices = devices

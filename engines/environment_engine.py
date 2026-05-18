@@ -3,6 +3,8 @@ class EnvironmentEngine:
     def update(self, world):
 
         inside_temp = world.environment["inside_temp"]
+        
+        inside_humidity = world.environment["inside_humidity"]
 
         outside_temp = world.weather["outside_temp"]
 
@@ -35,7 +37,34 @@ class EnvironmentEngine:
 
         # batas suhu realistis
         inside_temp = max(16, min(35, inside_temp))
+        
+        # HUMIDITY LOGIC
+        
+        outside_humidity = world.weather["outside_humidity"]
 
+        occupancy = world.human["occupancy"]
+
+        # Outdoor humidity influence
+        if outside_humidity > inside_humidity:
+            inside_humidity += 0.08
+        else:
+            inside_humidity -= 0.03
+
+        # AC dries air
+        if ac_state in ["MAX_COOLING", "COOLING"]:
+            inside_humidity -= 0.12
+
+        elif ac_state == "MAINTAIN":
+            inside_humidity -= 0.05
+
+        # Human presence adds humidity
+        if occupancy > 0:
+            inside_humidity += 0.02
+
+        # Clamp realism
+        inside_humidity = max(35, min(95, inside_humidity))
+
+        world.environment["inside_humidity"] = round(inside_humidity, 1)
         world.environment["inside_temp"] = round(inside_temp, 2)
         
         # INDOOR BRIGHTNESS

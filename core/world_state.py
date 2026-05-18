@@ -11,7 +11,12 @@ class WorldState:
             "weekday": now.strftime("%A")
         }
 
-        self.weather = {}
+        self.weather = {
+            "weather_type": "Cloudy",
+            "outside_temp": 26,
+            "outside_humidity": 85,
+            "weather_remaining": 120
+        }
         self.human = {
             "activity": "Sleeping",
             "occupancy": 1,

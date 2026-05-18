@@ -39,9 +39,11 @@ The result is a rich, explainable, and reusable dataset suitable for:
   <img src="data/detail.png" alt="SimuLith Detail">
 </p>
 
----
+<br>
 
----
+<p align="center">◆ ◆ ◆</p>
+
+<br>
 
 # Simulation Architecture
 

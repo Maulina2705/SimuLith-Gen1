@@ -1,4 +1,4 @@
 timestamp,hour,minute,weekday,weather_type,outside_temp,outside_humidity,weather_remaining,active_event,event_remaining,activity,occupancy,movement_intensity,activity_remaining,inside_temp,inside_humidity,indoor_brightness,ac_state,ac_power_w,ac_target_temp,pc_state,pc_power_w,main_lamp_state,main_lamp_power_w,desk_lamp_state,desk_lamp_power_w,rice_cooker_state,rice_cooker_power_w,washing_machine_state,washing_machine_power_w,total_power_w,total_current_a,voltage_v,total_energy_kwh,temp_sensor,humidity_sensor,pir_sensor,lux_sensor
-2026-05-18 22:41:18.167185,22,41,Monday,Cloudy,26,85,119,,0,Sleeping,1,2,59,27.76,70.0,5,MAX_COOLING,750,16,OFF,0,OFF,0,OFF,0,OFF,0,OFF,0,750,3.41,220,0.0125,27.8,70.7,2,5
-2026-05-18 22:42:18.167185,22,42,Monday,Cloudy,26,85,118,,0,Sleeping,1,2,58,27.59,70.0,5,COOLING,520,18,OFF,0,OFF,0,OFF,0,OFF,0,OFF,0,520,2.36,220,0.0212,27.4,70.5,2,5
-2026-05-18 22:43:18.167185,22,43,Monday,Cloudy,26,85,117,Late Night Work,143,Side Job,1,12,212,27.42,70.0,75,COOLING,520,18,WORKING,133,ON,18,ON,8,OFF,0,OFF,0,679,3.09,220,0.0325,27.4,69.8,12,75
+2025-01-01 00:01:00,0,1,Wednesday,Cloudy,26,85,119,,0,Sleeping,1,2,59,27.76,70.0,5,MAX_COOLING,750,16,OFF,0,OFF,0,OFF,0,OFF,0,OFF,0,750,3.41,220,0.0125,27.8,69.8,2,5
+2025-01-01 00:02:00,0,2,Wednesday,Cloudy,26,85,118,,0,Sleeping,1,2,58,27.59,70.0,5,COOLING,520,18,OFF,0,OFF,0,OFF,0,OFF,0,OFF,0,520,2.36,220,0.0212,27.5,69.7,2,5
+2025-01-01 00:03:00,0,3,Wednesday,Cloudy,26,85,117,,0,Sleeping,1,2,57,27.42,70.0,5,COOLING,520,18,OFF,0,OFF,0,OFF,0,WARM,35,OFF,0,555,2.52,220,0.0305,27.3,70.0,2,5

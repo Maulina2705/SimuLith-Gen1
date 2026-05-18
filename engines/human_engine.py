@@ -22,6 +22,7 @@ class HumanEngine:
         active_event = world.events["active_event"]
         weather_type = world.weather["weather_type"]
         weekday = world.time["weekday"]
+        day = world.time["day"]
 
         activity = "Idle"
         occupancy = 1
@@ -53,6 +54,11 @@ class HumanEngine:
                 gaming_weight = 10
 
                 sidejob_weight = 10 + (stress * 0.2)
+                
+                # End-of-month financial pressure
+                if day >= 25:
+
+                    sidejob_weight += 15
 
                 activity = random.choices(
                     ["Sleeping", "Gaming", "Side Job"],
@@ -81,6 +87,10 @@ class HumanEngine:
             elif 17 <= hour < 22:
 
                 gaming_weight = 30
+                # Early month more relaxed
+                if day <= 7:
+
+                    gaming_weight += 10
 
                 relaxing_weight = 30 + (fatigue * 0.2)
 

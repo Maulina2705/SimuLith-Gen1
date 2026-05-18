@@ -28,7 +28,7 @@ time_engine = TimeEngine()
 
 print("SimuLith Started")
 
-for _ in range(10080):
+for _ in range(10):
 
     tick_engine.next_tick(world)
     time_engine.update(world)

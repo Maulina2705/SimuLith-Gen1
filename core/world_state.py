@@ -34,7 +34,8 @@ class WorldState:
         # EVENTS
         self.events = {
             "active_event": None,
-            "event_remaining": 0
+            "event_remaining": 0,
+            "special_day": None
         }
 
         # HUMAN

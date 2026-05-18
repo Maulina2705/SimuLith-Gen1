@@ -17,8 +17,17 @@ class EnvironmentEngine:
             inside_temp -= 0.02
 
         # AC mendinginkan ruangan
-        if ac_state == "ON":
+        if ac_state == "MAX_COOLING":
+            inside_temp -= 0.22
+
+        elif ac_state == "COOLING":
             inside_temp -= 0.15
+
+        elif ac_state == "MAINTAIN":
+            inside_temp -= 0.07
+
+        elif ac_state == "IDLE":
+            inside_temp -= 0.02
 
         # PC gaming menghasilkan panas
         if pc_state == "GAMING":

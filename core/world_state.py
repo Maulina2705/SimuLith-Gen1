@@ -12,7 +12,12 @@ class WorldState:
         }
 
         self.weather = {}
-        self.human = {}
+        self.human = {
+            "activity": "Sleeping",
+            "occupancy": 1,
+            "movement_intensity": 2,
+            "activity_remaining": 60
+        }
         self.devices = {}
         self.environment = {
             "inside_temp": 28.0,

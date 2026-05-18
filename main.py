@@ -24,7 +24,7 @@ export_engine = ExportEngine()
 
 print("SimuLith Started")
 
-for _ in range(5):
+for _ in range(3):
 
     tick_engine.next_tick(world)
     weather_engine.update(world)
@@ -41,6 +41,7 @@ for _ in range(5):
     print(world.environment)
     print(world.energy)
     print(world.sensors)
+    print(world.human)
   
     time.sleep(1)
 

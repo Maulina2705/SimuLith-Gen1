@@ -1,11 +1,11 @@
 timestamp,hour,minute,weekday,weather_type,outside_temp,outside_humidity,weather_remaining,active_event,event_remaining,activity,occupancy,movement_intensity,activity_remaining,inside_temp,inside_humidity,indoor_brightness,ac_state,ac_power_w,ac_target_temp,pc_state,pc_power_w,main_lamp_state,main_lamp_power_w,desk_lamp_state,desk_lamp_power_w,rice_cooker_state,rice_cooker_power_w,washing_machine_state,washing_machine_power_w,total_power_w,total_current_a,voltage_v,total_energy_kwh,temp_sensor,humidity_sensor,pir_sensor,lux_sensor
-2025-01-01 00:01:00,0,1,Wednesday,Cloudy,26,85,119,Late Night Work,147,Side Job,1,12,164,27.76,70.0,75,MAX_COOLING,750,16,OFF,0,ON,18,ON,8,OFF,0,OFF,0,776,3.53,220,0.0129,27.6,70.7,12,75
-2025-01-01 00:02:00,0,2,Wednesday,Cloudy,26,85,118,Late Night Work,146,Side Job,1,12,85,27.59,70.0,75,COOLING,520,18,WORKING,176,ON,18,ON,8,OFF,0,OFF,0,722,3.28,220,0.0249,27.6,70.4,12,75
-2025-01-01 00:03:00,0,3,Wednesday,Cloudy,26,85,117,Late Night Work,145,Side Job,1,12,89,27.42,70.0,75,COOLING,520,18,WORKING,171,ON,18,ON,8,OFF,0,OFF,0,717,3.26,220,0.0368,27.5,70.7,12,75
-2025-01-01 00:04:00,0,4,Wednesday,Cloudy,26,85,116,Late Night Work,144,Side Job,1,12,132,27.25,70.0,75,COOLING,520,18,WORKING,213,ON,18,ON,8,OFF,0,OFF,0,759,3.45,220,0.0495,27.3,70.5,12,75
-2025-01-01 00:05:00,0,5,Wednesday,Cloudy,26,85,115,Late Night Work,143,Side Job,1,12,188,27.08,70.0,75,COOLING,520,18,WORKING,187,ON,18,ON,8,OFF,0,OFF,0,733,3.33,220,0.0617,27.0,69.3,12,75
-2025-01-01 00:06:00,0,6,Wednesday,Cloudy,26,85,114,Late Night Work,142,Side Job,1,12,185,26.91,70.0,75,COOLING,520,18,WORKING,141,ON,18,ON,8,WARM,35,OFF,0,722,3.28,220,0.0737,26.7,69.5,12,75
-2025-01-01 00:07:00,0,7,Wednesday,Cloudy,26,85,113,Late Night Work,141,Side Job,1,12,165,26.74,70.0,75,COOLING,520,18,WORKING,218,ON,18,ON,8,WARM,35,OFF,0,799,3.63,220,0.087,26.8,69.5,12,75
-2025-01-01 00:08:00,0,8,Wednesday,Cloudy,26,85,112,Late Night Work,140,Side Job,1,12,107,26.57,70.0,75,COOLING,520,18,WORKING,123,ON,18,ON,8,OFF,0,OFF,0,669,3.04,220,0.0981,26.7,70.7,12,75
-2025-01-01 00:09:00,0,9,Wednesday,Cloudy,26,85,111,Late Night Work,139,Side Job,1,12,211,26.4,70.0,75,COOLING,520,18,OFF,0,ON,18,ON,8,OFF,0,OFF,0,546,2.48,220,0.1072,26.3,69.2,12,75
-2025-01-01 00:10:00,0,10,Wednesday,Cloudy,26,85,110,Late Night Work,138,Side Job,1,12,125,26.23,70.0,75,COOLING,520,18,WORKING,178,ON,18,ON,8,OFF,0,OFF,0,724,3.29,220,0.1193,26.1,70.3,12,75
+2025-01-01 00:01:00,0,1,Wednesday,Cloudy,26,85,119,,0,Sleeping,1,2,59,27.76,70.0,5,MAX_COOLING,750,16,OFF,0,OFF,0,OFF,0,WARM,35,OFF,0,785,3.57,220,0.0131,27.9,70.3,2,5
+2025-01-01 00:02:00,0,2,Wednesday,Cloudy,26,85,118,,0,Sleeping,1,2,58,27.67,70.0,5,MAINTAIN,320,21,OFF,0,OFF,0,OFF,0,OFF,0,OFF,0,320,1.45,220,0.0184,27.5,69.9,2,5
+2025-01-01 00:03:00,0,3,Wednesday,Cloudy,26,85,117,,0,Sleeping,1,2,57,27.58,70.0,5,MAINTAIN,320,21,OFF,0,OFF,0,OFF,0,OFF,0,OFF,0,320,1.45,220,0.0237,27.5,70.0,2,5
+2025-01-01 00:04:00,0,4,Wednesday,Cloudy,26,85,116,,0,Sleeping,1,2,56,27.49,70.0,5,MAINTAIN,320,21,OFF,0,OFF,0,OFF,0,OFF,0,OFF,0,320,1.45,220,0.029,27.3,69.3,2,5
+2025-01-01 00:05:00,0,5,Wednesday,Cloudy,26,85,115,,0,Sleeping,1,2,55,27.4,70.0,5,MAINTAIN,320,21,OFF,0,OFF,0,OFF,0,OFF,0,OFF,0,320,1.45,220,0.0343,27.3,70.4,2,5
+2025-01-01 00:06:00,0,6,Wednesday,Cloudy,26,85,114,,0,Sleeping,1,2,54,27.31,70.0,5,MAINTAIN,320,21,OFF,0,OFF,0,OFF,0,OFF,0,OFF,0,320,1.45,220,0.0396,27.3,69.9,2,5
+2025-01-01 00:07:00,0,7,Wednesday,Cloudy,26,85,113,,0,Sleeping,1,2,53,27.22,70.0,5,MAINTAIN,320,21,OFF,0,OFF,0,OFF,0,OFF,0,OFF,0,320,1.45,220,0.0449,27.1,70.9,2,5
+2025-01-01 00:08:00,0,8,Wednesday,Cloudy,26,85,112,,0,Sleeping,1,2,52,27.13,70.0,5,MAINTAIN,320,21,OFF,0,OFF,0,OFF,0,OFF,0,OFF,0,320,1.45,220,0.0502,27.2,70.3,2,5
+2025-01-01 00:09:00,0,9,Wednesday,Cloudy,26,85,111,,0,Sleeping,1,2,51,27.04,70.0,5,MAINTAIN,320,21,OFF,0,OFF,0,OFF,0,OFF,0,OFF,0,320,1.45,220,0.0555,27.2,69.7,2,5
+2025-01-01 00:10:00,0,10,Wednesday,Cloudy,26,85,110,,0,Sleeping,1,2,50,26.95,70.0,5,MAINTAIN,320,21,OFF,0,OFF,0,OFF,0,OFF,0,OFF,0,320,1.45,220,0.0608,26.9,69.6,2,5

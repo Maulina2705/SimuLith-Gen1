@@ -12,47 +12,49 @@ class HumanEngine:
             return
 
         hour = world.time["hour"]
+        active_event = world.events["active_event"]
 
         activity = "Idle"
         occupancy = 1
         duration = 30
+        
+        # HARD EVENT OVERRIDE
+        if active_event == "Weekend Gaming":
 
-        # Midnight - Early Morning
-        if 0 <= hour < 6:
+            activity = "Gaming"
+            occupancy = 1
 
-            activity = random.choices(
-                ["Sleeping", "Gaming", "Side Job"],
-                weights=[80, 10, 10]
-            )[0]
+        elif active_event == "Late Night Work":
 
-        # Morning
-        elif 6 <= hour < 8:
+            activity = "Side Job"
+            occupancy = 1
 
-            activity = random.choices(
-                ["Morning Routine", "Cooking", "Relaxing"],
-                weights=[60, 25, 15]
-            )[0]
+        else:
 
-        # Work Hours
-        elif 8 <= hour < 17:
+            # Midnight - Early Morning
+            if 0 <= hour < 6:
 
-            activity = "Outside Working"
-            occupancy = 0
+                activity = random.choices(
+                    ["Sleeping", "Gaming", "Side Job"],
+                    weights=[80, 10, 10]
+                )[0]
 
-        # Evening
-        elif 17 <= hour < 22:
+            # Morning
+            elif 6 <= hour < 8:
 
-            # HARD EVENT OVERRIDE
+                activity = random.choices(
+                    ["Morning Routine", "Cooking", "Relaxing"],
+                    weights=[60, 25, 15]
+                )[0]
 
-            if world.events["active_event"] == "Late Night Work":
+            # Work Hours
+            elif 8 <= hour < 17:
 
-                activity = "Side Job"
+                activity = "Outside Working"
+                occupancy = 0
 
-            elif world.events["active_event"] == "Weekend Gaming":
-
-                activity = "Gaming"
-
-            else:
+            # Evening
+            elif 17 <= hour < 22:
 
                 weights = [40, 30, 20, 10]
 
@@ -61,13 +63,13 @@ class HumanEngine:
                     weights=weights
                 )[0]
 
-        # Late Night
-        else:
+            # Late Night
+            else:
 
-            activity = random.choices(
-                ["Relaxing", "Sleeping", "Gaming"],
-                weights=[50, 40, 10]
-            )[0]
+                activity = random.choices(
+                    ["Relaxing", "Sleeping", "Gaming"],
+                    weights=[50, 40, 10]
+                )[0]
 
         # Duration realism
         if activity == "Sleeping":

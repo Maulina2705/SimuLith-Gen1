@@ -29,9 +29,11 @@ The result is a rich, explainable, and reusable dataset suitable for:
 * energy forecasting
 * edge AI experimentation
 
----
+<br>
 
----
+<p align="center">◆ ◆ ◆</p>
+
+<br>
 
 # Main Idea
 
@@ -55,9 +57,11 @@ The result is a rich, explainable, and reusable dataset suitable for:
   Contextual behavioral simulation pipeline inside SimuLith Gen-1.
 </p>
 
----
+<br>
 
----
+<p align="center">◆ ◆ ◆</p>
+
+<br>
 
 # What SimuLith Simulates
 
@@ -209,9 +213,11 @@ Sensors are intentionally imperfect.
 
 This creates more realistic AI training data.
 
----
+<br>
 
----
+<p align="center">◆ ◆ ◆</p>
+
+<br>
 
 # Dataset Output
 
@@ -259,9 +265,11 @@ What if we simulate life itself first,
 then generate the sensors from that world?
 ```
 
----
+<br>
 
----
+<p align="center">◆ ◆ ◆</p>
+
+<br>
 
 # Tech Stack
 
@@ -280,9 +288,11 @@ then generate the sensors from that world?
 * Firebase / MongoDB integration
 * Realtime visualization
 
----
+<br>
 
----
+<p align="center">◆ ◆ ◆</p>
+
+<br>
 
 # Project Structure
 
@@ -311,9 +321,11 @@ simulith-gen1/
 └── README.md
 ```
 
----
+<br>
 
----
+<p align="center">◆ ◆ ◆</p>
+
+<br>
 
 # Running SimuLith
 
@@ -335,9 +347,11 @@ Generated CSV output:
 simulation/simulated_data.csv
 ```
 
----
+<br>
 
----
+<p align="center">◆ ◆ ◆</p>
+
+<br>
 
 # Future Vision
 
@@ -362,9 +376,11 @@ Possible AI use-cases:
 * adaptive automation
 * edge-AI behavior modeling
 
----
+<br>
 
----
+<p align="center">◆ ◆ ◆</p>
+
+<br>
 
 # Status
 
@@ -380,9 +396,11 @@ Current focus:
 * realtime architecture
 * AI integration
 
----
+<br>
 
----
+<p align="center">◆ ◆ ◆</p>
+
+<br>
 
 # Developer Notes
 

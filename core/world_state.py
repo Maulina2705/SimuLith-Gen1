@@ -18,6 +18,8 @@ class WorldState:
             "hour": virtual_start.hour,
             "minute": virtual_start.minute,
             "weekday": virtual_start.strftime("%A"),
+            "day": virtual_start.day,
+            "month": virtual_start.month,
             "tick": 0
         }
 
@@ -40,7 +42,12 @@ class WorldState:
             "activity": "Sleeping",
             "occupancy": 1,
             "movement_intensity": 2,
-            "activity_remaining": 60
+            "activity_remaining": 60,
+            
+            "fatigue": 20,
+            "stress": 15,
+            "focus": 70,
+            "comfort": 75
         }
 
         # DEVICES

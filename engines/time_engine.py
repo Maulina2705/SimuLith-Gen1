@@ -16,3 +16,5 @@ class TimeEngine:
         world.time["hour"] = timestamp.hour
         world.time["minute"] = timestamp.minute
         world.time["weekday"] = timestamp.strftime("%A")
+        world.time["day"] = timestamp.day
+        world.time["month"] = timestamp.month

@@ -28,7 +28,7 @@ time_engine = TimeEngine()
 
 print("SimuLith Started")
 
-for _ in range(3):
+for _ in range(10080):
 
     tick_engine.next_tick(world)
     time_engine.update(world)
@@ -41,16 +41,16 @@ for _ in range(3):
     sensor_engine.update(world)
     export_engine.update(world)
 
-    print(world.weather)
-    print(world.events)
-    print(world.human)
-    print(world.devices)
-    print(world.environment)
-    print(world.energy)
-    print(world.sensors)
-    print(world.human)
-    print("EVENT:", world.events)
+    #print(world.weather)
+    #print(world.events)
+    #print(world.human)
+    #print(world.devices)
+    #print(world.environment)
+    #print(world.energy)
+    #print(world.sensors)
+    #print(world.human)
+    #print("EVENT:", world.events)
   
-    time.sleep(1)
+    time.sleep(0.001)
 
 export_engine.save_csv()

@@ -6,6 +6,7 @@ from engines.device_engine import DeviceEngine
 from engines.energy_engine import EnergyEngine
 from engines.environment_engine import EnvironmentEngine
 from engines.sensor_engine import SensorEngine
+from engines.export_engine import ExportEngine
 
 import time
 
@@ -18,6 +19,7 @@ device_engine = DeviceEngine()
 energy_engine = EnergyEngine()
 environment_engine = EnvironmentEngine()
 sensor_engine = SensorEngine()
+export_engine = ExportEngine()
 
 
 print("SimuLith Started")
@@ -31,6 +33,7 @@ for _ in range(5):
     environment_engine.update(world)
     energy_engine.update(world)
     sensor_engine.update(world)
+    export_engine.update(world)
 
     print(world.weather)
     print(world.human)
@@ -40,3 +43,5 @@ for _ in range(5):
     print(world.sensors)
   
     time.sleep(1)
+
+export_engine.save_csv()

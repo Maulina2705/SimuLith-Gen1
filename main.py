@@ -46,6 +46,7 @@ for _ in range(3):
     print(world.energy)
     print(world.sensors)
     print(world.human)
+    print("EVENT:", world.events)
   
     time.sleep(1)
 

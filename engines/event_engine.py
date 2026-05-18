@@ -24,7 +24,7 @@ class EventEngine:
 
             if 18 <= hour <= 23:
 
-                if random.random() < 0.25:
+                if random.random() < 1:
 
                     active_event = "Weekend Gaming"
                     duration = random.randint(120, 360)

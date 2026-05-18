@@ -42,21 +42,24 @@ class HumanEngine:
         # Evening
         elif 17 <= hour < 22:
 
-            weights = [40, 30, 20, 10]
+            # HARD EVENT OVERRIDE
 
-            # Event Influence
-            if world.events["active_event"] == "Weekend Gaming":
+            if world.events["active_event"] == "Late Night Work":
 
-                weights = [70, 10, 15, 5]
+                activity = "Side Job"
 
-            elif world.events["active_event"] == "Late Night Work":
+            elif world.events["active_event"] == "Weekend Gaming":
 
-                weights = [15, 20, 60, 5]
+                activity = "Gaming"
 
-            activity = random.choices(
-                ["Gaming", "Relaxing", "Side Job", "Watching TV"],
-                weights=weights
-            )[0]
+            else:
+
+                weights = [40, 30, 20, 10]
+
+                activity = random.choices(
+                    ["Gaming", "Relaxing", "Side Job", "Watching TV"],
+                    weights=weights
+                )[0]
 
         # Late Night
         else:

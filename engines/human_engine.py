@@ -9,6 +9,7 @@ class HumanEngine:
 
         # Force override by active events
         active_event = world.events["active_event"]
+        special_day = world.events["special_day"]
 
         if active_event in ["Weekend Gaming", "Late Night Work"]:
 
@@ -19,7 +20,6 @@ class HumanEngine:
             return
 
         hour = world.time["hour"]
-        active_event = world.events["active_event"]
         weather_type = world.weather["weather_type"]
         weekday = world.time["weekday"]
         day = world.time["day"]
@@ -59,6 +59,12 @@ class HumanEngine:
                 if day >= 25:
 
                     sidejob_weight += 15
+                
+                # Ramadan behavior
+                if special_day == "Ramadan":
+
+                    gaming_weight += 10
+                    sidejob_weight += 5
 
                 activity = random.choices(
                     ["Sleeping", "Gaming", "Side Job"],
@@ -79,9 +85,12 @@ class HumanEngine:
 
             # Work Hours
             elif 8 <= hour < 17:
-
-                activity = "Outside Working"
-                occupancy = 0
+                
+                # Lebaran mudik
+                if special_day == "Lebaran":
+                    
+                    activity = "Outside Working"
+                    occupancy = 0
 
             # EVENING
             elif 17 <= hour < 22:

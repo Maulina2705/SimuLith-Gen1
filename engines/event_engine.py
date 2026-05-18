@@ -12,11 +12,31 @@ class EventEngine:
             return
 
         hour = world.time["hour"]
+        day = world.time["day"]
+        month = world.time["month"]
 
         weekday = world.time["weekday"]
 
         active_event = None
         duration = 0
+        
+        # SPECIAL DAYS
+        special_day = None
+
+        # Ramadan (simple simulation)
+        if month == 3:
+
+            special_day = "Ramadan"
+
+        # Lebaran
+        if month == 4 and 1 <= day <= 5:
+
+            special_day = "Lebaran"
+
+        # New Year
+        if month == 1 and day == 1:
+
+            special_day = "New Year"
 
         # WEEKEND GAMING EVENT
 
@@ -54,5 +74,6 @@ class EventEngine:
         # Save event
         world.events = {
             "active_event": active_event,
-            "event_remaining": duration
+            "event_remaining": duration,
+            "special_day": special_day
         }

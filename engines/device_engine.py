@@ -5,6 +5,13 @@ class DeviceEngine:
     def update(self, world):
 
         activity = world.human["activity"]
+        comfort = world.human["comfort"]
+        fatigue = world.human["fatigue"]
+        stress = world.human["stress"]
+
+        day = world.time["day"]
+
+        weather_type = world.weather["weather_type"]
 
         hour = world.time["hour"]
 
@@ -19,7 +26,14 @@ class DeviceEngine:
 
             inside_temp = world.environment["inside_temp"]
 
-            if inside_temp >= 28:
+                        # Comfort-based AC behavior
+            if comfort < 40:
+
+                ac_state = "MAX_COOLING"
+                ac_power = 820
+                target_temp = 16
+
+            elif inside_temp >= 28:
 
                 ac_state = "MAX_COOLING"
                 ac_power = 750
@@ -31,7 +45,13 @@ class DeviceEngine:
                 ac_power = 520
                 target_temp = 18
 
-            elif inside_temp >= 23:
+                # End of month saving behavior
+                if day >= 25:
+
+                    target_temp = 20
+
+                    if ac_power > 500:
+                        ac_power -= 80
 
                 ac_state = "MAINTAIN"
                 ac_power = 320

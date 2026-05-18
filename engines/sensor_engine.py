@@ -46,9 +46,7 @@ class SensorEngine:
             + random.uniform(-2, 2)
         )
 
-        world.sensors = {
-            "temp_sensor": temp_sensor,
-            "humidity_sensor": humidity_sensor,
-            "pir_sensor": pir_sensor,
-            "lux_sensor": lux_sensor
-        }
+        world.sensors["temp_sensor"] = temp_sensor
+        world.sensors["humidity_sensor"] = humidity_sensor
+        world.sensors["pir_sensor"] = pir_sensor
+        world.sensors["lux_sensor"] = lux_sensor

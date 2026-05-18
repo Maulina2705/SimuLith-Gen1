@@ -20,6 +20,8 @@ class HumanEngine:
 
         hour = world.time["hour"]
         active_event = world.events["active_event"]
+        weather_type = world.weather["weather_type"]
+        weekday = world.time["weekday"]
 
         activity = "Idle"
         occupancy = 1
@@ -63,7 +65,22 @@ class HumanEngine:
             # Evening
             elif 17 <= hour < 22:
 
-                weights = [40, 30, 20, 10]
+                # WEATHER-INFLUENCED EVENING LOGIC
+                if weather_type == "Heavy Rain":
+
+                    weights = [55, 20, 20, 5]
+
+                elif weather_type == "Light Rain":
+
+                    weights = [45, 25, 20, 10]
+
+                elif weather_type == "Cloudy":
+
+                    weights = [35, 35, 20, 10]
+
+                else:
+
+                    weights = [25, 25, 25, 25]
 
                 activity = random.choices(
                     ["Gaming", "Relaxing", "Side Job", "Watching TV"],
@@ -73,9 +90,21 @@ class HumanEngine:
             # Late Night
             else:
 
+                if weather_type == "Heavy Rain":
+
+                    weights = [50, 35, 15]
+
+                elif weather_type == "Light Rain":
+
+                    weights = [40, 40, 20]
+
+                else:
+
+                    weights = [50, 40, 10]
+
                 activity = random.choices(
                     ["Relaxing", "Sleeping", "Gaming"],
-                    weights=[50, 40, 10]
+                    weights=weights
                 )[0]
 
         # Duration realism

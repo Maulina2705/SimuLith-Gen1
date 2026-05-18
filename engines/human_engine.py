@@ -4,27 +4,22 @@ class HumanEngine:
 
         hour = world.time["hour"]
 
-        if 0 <= hour < 6:
-            activity = "Sleeping"
-            occupancy = 1
+        movement = 0
 
-        elif 6 <= hour < 8:
-            activity = "Morning Routine"
-            occupancy = 1
+        if activity == "Sleeping":
+            movement = 2
 
-        elif 8 <= hour < 17:
-            activity = "Outside Working"
-            occupancy = 0
+        elif activity == "Morning Routine":
+            movement = 50
 
-        elif 17 <= hour < 22:
-            activity = "Gaming"
-            occupancy = 1
+        elif activity == "Gaming":
+            movement = 15
 
-        else:
-            activity = "Relaxing"
-            occupancy = 1
+        elif activity == "Relaxing":
+            movement = 8
 
         world.human = {
             "activity": activity,
-            "occupancy": occupancy
+            "occupancy": occupancy,
+            "movement_intensity": movement
         }

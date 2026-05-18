@@ -66,4 +66,8 @@ class WorldState:
 
         # SENSORS
    
-        self.sensors = {}
+        self.sensors = {
+            "temp_drift": 0,
+            "humidity_drift": 0,
+            "lux_drift": 0
+        }

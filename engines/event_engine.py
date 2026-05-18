@@ -20,11 +20,11 @@ class EventEngine:
 
         # WEEKEND GAMING EVENT
 
-        if weekday in ["Saturday", "Sunday"]:
+        if True:
 
             if 18 <= hour <= 23:
 
-                if random.random() < 1:
+                if random.random() < 0.25:
 
                     active_event = "Weekend Gaming"
                     duration = random.randint(120, 360)
@@ -33,7 +33,7 @@ class EventEngine:
 
         if active_event is None:
 
-            if 21 <= hour <= 1:
+            if hour >= 21 or hour <= 1: 
 
                 if random.random() < 0.15:
 

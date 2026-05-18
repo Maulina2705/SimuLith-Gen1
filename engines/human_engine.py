@@ -7,6 +7,13 @@ class HumanEngine:
         # Kurangi durasi activity
         world.human["activity_remaining"] -= 1
 
+        # Force override by active events
+        active_event = world.events["active_event"]
+
+        if active_event in ["Weekend Gaming", "Late Night Work"]:
+
+            world.human["activity_remaining"] = 0
+
         # Kalau activity masih ada
         if world.human["activity_remaining"] > 0:
             return

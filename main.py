@@ -4,6 +4,7 @@ from engines.weather_engine import WeatherEngine
 from engines.human_engine import HumanEngine
 from engines.device_engine import DeviceEngine
 from engines.energy_engine import EnergyEngine
+from engines.environment_engine import EnvironmentEngine
 
 import time
 
@@ -14,6 +15,7 @@ weather_engine = WeatherEngine()
 human_engine = HumanEngine()
 device_engine = DeviceEngine()
 energy_engine = EnergyEngine()
+environment_engine = EnvironmentEngine()
 
 print("SimuLith Started")
 
@@ -24,10 +26,12 @@ for _ in range(5):
     human_engine.update(world)
     device_engine.update(world)
     energy_engine.update(world)
+    environment_engine.update(world)
 
     print(world.weather)
     print(world.human)
     print(world.devices)
+    print(world.environment)
     print(world.energy)
-
+  
     time.sleep(1)

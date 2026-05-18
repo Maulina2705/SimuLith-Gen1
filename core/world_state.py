@@ -14,6 +14,10 @@ class WorldState:
         self.weather = {}
         self.human = {}
         self.devices = {}
-        self.environment = {}
+        self.environment = {
+            "inside_temp": 28.0,
+            "inside_humidity": 70,
+            "indoor_brightness": 40
+        }
         self.energy = {}
         self.sensors = {}

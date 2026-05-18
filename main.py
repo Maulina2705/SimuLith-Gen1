@@ -8,6 +8,7 @@ from engines.environment_engine import EnvironmentEngine
 from engines.sensor_engine import SensorEngine
 from engines.export_engine import ExportEngine
 from engines.event_engine import EventEngine
+from engines.time_engine import TimeEngine
 
 import time
 
@@ -22,6 +23,7 @@ environment_engine = EnvironmentEngine()
 sensor_engine = SensorEngine()
 export_engine = ExportEngine()
 event_engine = EventEngine()
+time_engine = TimeEngine()
 
 
 print("SimuLith Started")
@@ -29,6 +31,7 @@ print("SimuLith Started")
 for _ in range(3):
 
     tick_engine.next_tick(world)
+    time_engine.update(world)
     weather_engine.update(world)
     event_engine.update(world)
     human_engine.update(world)

@@ -5,7 +5,6 @@ class SensorEngine:
     def update(self, world):
 
         # SENSOR DRIFT UPDATE
-
         world.sensors["temp_drift"] += random.uniform(-0.02, 0.02)
 
         world.sensors["humidity_drift"] += random.uniform(-0.05, 0.05)

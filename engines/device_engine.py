@@ -26,7 +26,7 @@ class DeviceEngine:
 
             inside_temp = world.environment["inside_temp"]
 
-                        # Comfort-based AC behavior
+            # Comfort-based AC behavior
             if comfort < 40:
 
                 ac_state = "MAX_COOLING"

@@ -220,57 +220,45 @@ class HumanEngine:
         # FATIGUE LOGIC
 
         if activity == "Sleeping":
-
             fatigue -= random.randint(8, 15)
 
         elif activity in ["Gaming", "Side Job"]:
-
             fatigue += random.randint(4, 8)
 
         elif activity == "Outside Working":
-
             fatigue += random.randint(6, 10)
 
         else:
-
             fatigue += random.randint(1, 3)
 
         # STRESS LOGIC
 
         if activity == "Side Job":
-
             stress += random.randint(3, 7)
 
         elif activity in ["Relaxing", "Watching TV"]:
-
             stress -= random.randint(2, 5)
 
         elif activity == "Sleeping":
-
             stress -= random.randint(1, 4)
 
         # FOCUS LOGIC
 
         if activity == "Side Job":
-
             focus += random.randint(1, 4)
 
         elif activity == "Gaming":
-
             focus -= random.randint(1, 3)
 
         elif activity == "Sleeping":
-
             focus += random.randint(2, 5)
 
         # COMFORT LOGIC
-
         if 22 <= inside_temp <= 26:
 
             comfort += random.randint(1, 3)
 
         else:
-
             comfort -= random.randint(2, 5)
 
         # Clamp values

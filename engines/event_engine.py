@@ -39,7 +39,6 @@ class EventEngine:
             special_day = "New Year"
 
         # WEEKEND GAMING EVENT
-
         if True:
 
             if 18 <= hour <= 23:
@@ -50,7 +49,6 @@ class EventEngine:
                     duration = random.randint(120, 360)
 
         # LATE NIGHT WORK
-
         if active_event is None:
 
             if hour >= 21 or hour <= 1: 
@@ -61,7 +59,6 @@ class EventEngine:
                     duration = random.randint(60, 180)
 
         # LAUNDRY DAY
-
         if active_event is None:
 
             if 8 <= hour <= 20:

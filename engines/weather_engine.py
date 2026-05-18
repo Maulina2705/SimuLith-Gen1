@@ -20,10 +20,7 @@ class WeatherEngine:
             "Heavy Rain"
         ]
 
-        # =========================
         # WEATHER PROBABILITY
-        # =========================
-
         # Siang
         if 6 <= hour < 18:
 
@@ -39,10 +36,7 @@ class WeatherEngine:
             weights=weights
         )[0]
 
-        # =========================
-        # WEATHER PARAMETERS
-        # =========================
-
+         # WEATHER PARAMETERS
         if weather_type == "Sunny":
 
             outside_temp = random.randint(30, 34)

@@ -35,40 +35,9 @@ The result is a rich, explainable, and reusable dataset suitable for:
 
 # Main Idea
 
-Most IoT datasets only contain:
-
-```text
-Temperature = 27
-Humidity = 70
-```
-
-SimuLith tries to simulate:
-
-```text
-A virtual human living inside a believable digital room.
-```
-
-That means every generated sensor value has context behind it.
-
-Example:
-
-```text
-Heavy rain
-→ User stays inside longer
-→ Gaming activity increases
-→ PC power rises
-→ Indoor temperature changes
-→ AC cooling becomes aggressive
-→ Energy consumption spikes
-→ Sensors detect realistic environmental changes
-```
-
-This creates:
-
-* behavioral causality
-* realistic temporal patterns
-* explainable sensor transitions
-* interconnected AIoT data
+<p align="center">
+  <img src="data/detail.png" alt="SimuLith Detail">
+</p>
 
 ---
 
@@ -76,51 +45,13 @@ This creates:
 
 # Simulation Architecture
 
-```text
-                ┌────────────────────┐
-                │     Time Engine    │
-                └─────────┬──────────┘
-                          │
-                          ▼
-                ┌────────────────────┐
-                │   Weather Engine   │
-                └─────────┬──────────┘
-                          │
-                          ▼
-                ┌────────────────────┐
-                │    Event Engine    │
-                └─────────┬──────────┘
-                          │
-                          ▼
-                ┌────────────────────┐
-                │    Human Engine    │
-                └─────────┬──────────┘
-                          │
-                          ▼
-                ┌────────────────────┐
-                │   Device Engine    │
-                └─────────┬──────────┘
-                          │
-                          ▼
-                ┌────────────────────┐
-                │ Environment Engine │
-                └─────────┬──────────┘
-                          │
-                          ▼
-                ┌────────────────────┐
-                │   Energy Engine    │
-                └─────────┬──────────┘
-                          │
-                          ▼
-                ┌────────────────────┐
-                │   Sensor Engine    │
-                └─────────┬──────────┘
-                          │
-                          ▼
-                ┌────────────────────┐
-                │   Export Engine    │
-                └────────────────────┘
-```
+<p align="center">
+  <img src="data/architecture.png" alt="SimuLith Architecture">
+</p>
+
+<p align="center">
+  Contextual behavioral simulation pipeline inside SimuLith Gen-1.
+</p>
 
 ---
 

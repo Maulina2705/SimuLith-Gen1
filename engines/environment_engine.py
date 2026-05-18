@@ -37,3 +37,35 @@ class EnvironmentEngine:
         inside_temp = max(16, min(35, inside_temp))
 
         world.environment["inside_temp"] = round(inside_temp, 2)
+        
+        # INDOOR BRIGHTNESS
+        indoor_brightness = 20
+
+        hour = world.time["hour"]
+
+        weather_type = world.weather["weather_type"]
+
+        main_lamp_state = world.devices["main_lamp"]["state"]
+
+        # Siang
+        if 6 <= hour < 18:
+
+            indoor_brightness = 70
+
+            # Mendung lebih gelap
+            if weather_type == "Cloudy":
+                indoor_brightness = 45
+
+        # Malam
+        else:
+            indoor_brightness = 5
+
+        # Lampu utama
+        if main_lamp_state == "ON":
+            indoor_brightness += 55
+
+        # Lampu meja gaming
+        if world.devices["desk_lamp"]["state"] == "ON":
+            indoor_brightness += 15
+
+        world.environment["indoor_brightness"] = indoor_brightness

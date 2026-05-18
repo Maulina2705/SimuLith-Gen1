@@ -1,4 +1,4 @@
 timestamp,weather_type,outside_temp,activity,occupancy,movement_intensity,inside_temp,inside_humidity,total_power_w,total_energy_kwh,temp_sensor,humidity_sensor,pir_sensor,lux_sensor
-2026-05-18 19:34:16.846583,Cloudy,26,Sleeping,1,2,27.76,70,750,0.0125,27.7,69.1,2,40
-2026-05-18 19:35:16.846583,Cloudy,26,Sleeping,1,2,27.52,70,750,0.025,27.4,70.7,2,40
-2026-05-18 19:36:16.846583,Cloudy,26,Sleeping,1,2,27.28,70,750,0.0375,27.3,70.5,2,40
+2026-05-18 19:42:21.005747,Cloudy,26,Sleeping,1,2,27.76,70,768,0.0128,27.6,69.1,2,60
+2026-05-18 19:43:21.005747,Cloudy,26,Sleeping,1,2,27.52,70,768,0.0256,27.5,70.5,2,60
+2026-05-18 19:44:21.005747,Cloudy,26,Sleeping,1,2,27.28,70,768,0.0384,27.2,69.3,2,60

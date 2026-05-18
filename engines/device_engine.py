@@ -67,5 +67,34 @@ class DeviceEngine:
                 "state": "OFF",
                 "power_w": 0
             }
+        
+        # MAIN LAMP LOGIC
+        lamp_power = 0
+        lamp_state = "OFF"
+
+        hour = world.time["hour"]
+
+        weather_type = world.weather["weather_type"]
+
+        occupancy = world.human["occupancy"]
+
+        # Malam hari
+        if hour >= 18 or hour < 6:
+
+            if occupancy > 0:
+                lamp_state = "ON"
+                lamp_power = 18
+
+        # Siang mendung/hujan
+        elif weather_type == "Cloudy":
+
+            if occupancy > 0:
+                lamp_state = "ON"
+                lamp_power = 18
+
+        devices["main_lamp"] = {
+            "state": lamp_state,
+            "power_w": lamp_power
+        }
 
         world.devices = devices

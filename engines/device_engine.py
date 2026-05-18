@@ -124,5 +124,49 @@ class DeviceEngine:
             "state": rice_state,
             "power_w": rice_power
         }
+        
+        # WASHING MACHINE LOGIC
+        washing_state = "OFF"
+        washing_power = 0
+
+        current_hour = world.time["hour"]
+
+        current_minute = world.time["minute"]
+
+        active_event = world.events["active_event"]
+
+        # Laundry Event
+        if active_event == "Laundry Day":
+
+            # Total cycle ~ 60 menit
+
+            # Fill Water
+            if current_minute < 10:
+
+                washing_state = "FILL"
+                washing_power = 120
+
+            # Wash
+            elif current_minute < 35:
+
+                washing_state = "WASH"
+                washing_power = 350
+
+            # Rinse
+            elif current_minute < 50:
+
+                washing_state = "RINSE"
+                washing_power = 250
+
+            # Spin
+            else:
+
+                washing_state = "SPIN"
+                washing_power = 500
+
+        devices["washing_machine"] = {
+            "state": washing_state,
+            "power_w": washing_power
+        }
 
         world.devices = devices

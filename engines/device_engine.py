@@ -96,5 +96,33 @@ class DeviceEngine:
             "state": lamp_state,
             "power_w": lamp_power
         }
+        
+        # RICE COOKER LOGIC
+        rice_state = "OFF"
+        rice_power = 0
+
+        activity = world.human["activity"]
+
+        current_minute = world.time["minute"]
+
+        # Masak pagi
+        if activity in ["Morning Routine", "Cooking"]:
+
+            # Awal jam → cooking
+            if current_minute < 20:
+
+                rice_state = "COOKING"
+                rice_power = 300
+
+            # Setelah masak → warm
+            else:
+
+                rice_state = "WARM"
+                rice_power = 35
+
+        devices["rice_cooker"] = {
+            "state": rice_state,
+            "power_w": rice_power
+        }
 
         world.devices = devices

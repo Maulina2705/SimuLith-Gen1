@@ -9,6 +9,7 @@ from engines.sensor_engine import SensorEngine
 from engines.export_engine import ExportEngine
 from engines.event_engine import EventEngine
 from engines.time_engine import TimeEngine
+from engines.mqtt_engine import MqttEngine
 
 import time
 
@@ -24,6 +25,7 @@ sensor_engine = SensorEngine()
 export_engine = ExportEngine()
 event_engine = EventEngine()
 time_engine = TimeEngine()
+mqtt_engine = MqttEngine()
 
 
 print("SimuLith Started")
@@ -39,6 +41,7 @@ for _ in range(10):
     environment_engine.update(world)
     energy_engine.update(world)
     sensor_engine.update(world)
+    mqtt_engine.update(world)
     export_engine.update(world)
 
     #print(world.weather)

@@ -69,33 +69,26 @@ class DeviceEngine:
             }
         
         # MAIN LAMP LOGIC
-        lamp_power = 0
-        lamp_state = "OFF"
+        if activity == "Sleeping":
 
-        hour = world.time["hour"]
+            devices["main_lamp"] = {
+                "state": "OFF",
+                "power_w": 0
+            }
 
-        weather_type = world.weather["weather_type"]
+        elif world.human["occupancy"] > 0:
 
-        occupancy = world.human["occupancy"]
+            devices["main_lamp"] = {
+                "state": "ON",
+                "power_w": 18
+            }
 
-        # Malam hari
-        if hour >= 18 or hour < 6:
+        else:
 
-            if occupancy > 0:
-                lamp_state = "ON"
-                lamp_power = 18
-
-        # Siang mendung/hujan
-        elif weather_type == "Cloudy":
-
-            if occupancy > 0:
-                lamp_state = "ON"
-                lamp_power = 18
-
-        devices["main_lamp"] = {
-            "state": lamp_state,
-            "power_w": lamp_power
-        }
+            devices["main_lamp"] = {
+                "state": "OFF",
+                "power_w": 0
+            }
         
         # RICE COOKER LOGIC
         rice_state = "OFF"

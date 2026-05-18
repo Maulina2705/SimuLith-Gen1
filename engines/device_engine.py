@@ -53,6 +53,8 @@ class DeviceEngine:
                     if ac_power > 500:
                         ac_power -= 80
 
+            elif inside_temp >= 23:
+
                 ac_state = "MAINTAIN"
                 ac_power = 320
                 target_temp = 21

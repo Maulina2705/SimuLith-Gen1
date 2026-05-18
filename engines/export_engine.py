@@ -26,12 +26,17 @@ class ExportEngine:
             # EVENTS
             "active_event": world.events["active_event"],
             "event_remaining": world.events["event_remaining"],
+            "special_day": world.events["special_day"],
 
             # HUMAN
             "activity": world.human["activity"],
             "occupancy": world.human["occupancy"],
             "movement_intensity": world.human["movement_intensity"],
             "activity_remaining": world.human["activity_remaining"],
+            "fatigue": world.human["fatigue"],
+            "stress": world.human["stress"],
+            "focus": world.human["focus"],
+            "comfort": world.human["comfort"],
 
             # ENVIRONMENT
             "inside_temp": world.environment["inside_temp"],

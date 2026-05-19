@@ -7,11 +7,21 @@ import {
     ResponsiveContainer
 } from "recharts"
 
+import DeviceCard from "../components/DeviceCard"
+import SensorNode from "../components/SensorNode"
+
 export default function LiveRoom() {
 
-    const [temperature, setTemperature] = useState(24.6)
-    const [humidity, setHumidity] = useState(58)
-    const [power, setPower] = useState(436)
+    const [simulationState, setSimulationState] = useState({
+        temperature: 24.6,
+        humidity: 58,
+        power: 436,
+        occupancy: false,
+        weather: "Rain",
+        activity: "Resting",
+        acStatus: false,
+        currentTime: "14:35",
+    })
 
     const [history, setHistory] = useState([
         { temp: 24.6 },
@@ -25,39 +35,60 @@ export default function LiveRoom() {
 
         const interval = setInterval(() => {
 
-            setTemperature(prev =>
-                +(prev + (Math.random() * 0.6 - 0.3)).toFixed(1)
-            )
+            setSimulationState(prev => {
 
-            setHumidity(prev =>
-                Math.max(40,
-                    Math.min(80,
-                        +(prev + (Math.random() * 2 - 1)).toFixed(0)
-                    )
-                )
-            )
+                const updated = {
 
-            setPower(prev =>
-                Math.max(200,
-                    Math.min(700,
-                        Math.floor(prev + (Math.random() * 60 - 30))
-                    )
-                )
-            )
-
-            setHistory(prev => {
-
-                const updated = [
                     ...prev,
-                    { temp: temperature }
-                ]
+                    activity:
+                        prev.power > 550
+                            ? "Cooking"
+                            : prev.occupancy
+                                ? "Working"
+                                : "Resting",
 
-                if (updated.length > 20) {
-                    updated.shift()
+                    temperature:
+                        +(prev.temperature + (Math.random() * 0.6 - 0.3)).toFixed(1),
+
+                    humidity:
+                        Math.max(
+                            40,
+                            Math.min(
+                                80,
+                                +(prev.humidity + (Math.random() * 2 - 1)).toFixed(0)
+                            )
+                        ),
+
+                    power:
+                        Math.max(
+                            200,
+                            Math.min(
+                                700,
+                                Math.floor(prev.power + (Math.random() * 60 - 30))
+                            )
+                        ),
+
+                    occupancy: Math.random() > 0.2,
+
+                    acStatus: Math.random() > 0.3,
                 }
 
-                return updated
+                setHistory(prevHistory => {
 
+                    const updatedHistory = [
+                        ...prevHistory,
+                        { temp: updated.temperature }
+                    ]
+
+                    if (updatedHistory.length > 20) {
+                        updatedHistory.shift()
+                    }
+
+                    return updatedHistory
+
+                })
+
+                return updated
             })
 
         }, 2000)
@@ -165,7 +196,7 @@ export default function LiveRoom() {
                                     </p>
 
                                     <h2 className="text-4xl font-semibold mt-1 transition-all duration-500">
-                                        {temperature}°C
+                                        {simulationState.temperature}°C
                                     </h2>
 
                                     <div className="h-[50px] mt-3">
@@ -196,7 +227,7 @@ export default function LiveRoom() {
                                     </p>
 
                                     <h2 className="text-4xl font-semibold mt-1 transition-all duration-500">
-                                        {humidity}%
+                                        {simulationState.humidity}%
                                     </h2>
                                 </div>
 
@@ -209,7 +240,7 @@ export default function LiveRoom() {
                                     </p>
 
                                     <h2 className="text-4xl font-semibold mt-1 transition-all duration-500">
-                                        {power}W
+                                        {simulationState.power}W
                                     </h2>
                                 </div>
 
@@ -225,7 +256,12 @@ export default function LiveRoom() {
                         <img
                             src={roomBase}
                             alt="SimuLith Room"
-                            className="w-full h-full object-cover opacity-90"
+                            className="
+                                w-full h-full object-cover opacity-90
+                                scale-[1.02]
+                                hover:scale-[1.03]
+                                transition-all duration-[4000ms]
+                            "
                         />
 
                         {/* OVERLAY */}
@@ -235,60 +271,110 @@ export default function LiveRoom() {
 
                         <div className="absolute inset-0 backdrop-blur-[1px]" />
 
+                        {/* CINEMATIC VIGNETTE */}
+                        <div className="
+                            absolute inset-0
+                            bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.65)_100%)]
+                            pointer-events-none
+                        " />
+
+                        {/* ATMOSPHERIC LIGHT */}
+                        <div className="
+                            absolute top-[18%] left-[25%]
+                            w-[500px]
+                            h-[300px]
+                            bg-cyan-400/5
+                            blur-[120px]
+                            rotate-[-8deg]
+                            pointer-events-none
+                        " />
+
                         {/* ROOM GLOW */}
                         <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-[500px] h-[200px] bg-cyan-500/10 blur-[120px]" />
 
                         {/* LIVE AMBIENT GLOW */}
-                        <div className="
+                        <div
+                            className="
                                 absolute inset-0 pointer-events-none
-                                opacity-40
-                            ">
+                                transition-all duration-1000
+                            "
+                        >
 
-                            <div className="absolute top-[20%] left-[15%] w-[250px] h-[250px] bg-cyan-400/10 rounded-full blur-[100px] animate-pulse" />
+                            {/* COOL AMBIENCE */}
+                            <div
+                                className={`
+                                    absolute top-[20%] left-[15%]
+                                    w-[250px] h-[250px]
+                                    rounded-full blur-[100px]
+                                    transition-all duration-1000
 
-                            <div className="absolute bottom-[10%] right-[10%] w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[120px] animate-pulse" />
+                                    ${simulationState.weather === "Rain"
+                                        ? "bg-cyan-400/20"
+                                        : "bg-orange-300/10"
+                                    }
+                                `}
+                            />
+
+                            {/* POWER AMBIENCE */}
+                            <div
+                                className={`
+                                    absolute bottom-[10%] right-[10%]
+                                    w-[300px] h-[300px]
+                                    rounded-full blur-[120px]
+                                    transition-all duration-1000
+
+                                    ${simulationState.power > 500
+                                        ? "bg-purple-500/20"
+                                        : "bg-blue-500/10"
+                                    }
+                                `}
+                            />
 
                         </div>
 
                         {/* AC AIRFLOW */}
-                        <div className="absolute top-[170px] left-[70px]">
+                        {simulationState.acStatus && (
 
-                            <div className="relative w-[220px] h-[120px]">
+                            <div className="absolute top-[170px] left-[70px]">
 
-                                <div className="absolute w-[180px] h-[2px] bg-cyan-300/40 blur-sm rounded-full top-2 animate-pulse" />
+                                <div className="relative w-[220px] h-[120px]">
 
-                                <div className="absolute w-[160px] h-[2px] bg-cyan-300/30 blur-sm rounded-full top-8 animate-pulse" />
+                                    <div className="absolute w-[180px] h-[2px] bg-cyan-300/40 blur-sm rounded-full top-2 animate-pulse" />
 
-                                <div className="absolute w-[190px] h-[2px] bg-cyan-300/20 blur-sm rounded-full top-14 animate-pulse" />
+                                    <div className="absolute w-[160px] h-[2px] bg-cyan-300/30 blur-sm rounded-full top-8 animate-pulse" />
 
-                                <div className="absolute w-[150px] h-[2px] bg-cyan-300/30 blur-sm rounded-full top-20 animate-pulse" />
+                                    <div className="absolute w-[190px] h-[2px] bg-cyan-300/20 blur-sm rounded-full top-14 animate-pulse" />
+
+                                    <div className="absolute w-[150px] h-[2px] bg-cyan-300/30 blur-sm rounded-full top-20 animate-pulse" />
+
+                                </div>
 
                             </div>
 
-                        </div>
+                        )}
 
                         {/* OCCUPANCY VISUALIZATION */}
-                        <div className="absolute bottom-[120px] left-[52%] -translate-x-1/2 flex items-center justify-center">
+                        {simulationState.occupancy && (
 
-                            {/* OUTER PULSE */}
-                            <div className="absolute w-[180px] h-[180px] rounded-full border border-cyan-400/10 animate-ping" />
+                            <div className="absolute bottom-[120px] left-[52%] -translate-x-1/2 flex items-center justify-center">
 
-                            {/* MIDDLE RING */}
-                            <div className="absolute w-[120px] h-[120px] rounded-full border border-cyan-300/20" />
+                                <div className="absolute w-[180px] h-[180px] rounded-full border border-cyan-400/10 animate-ping" />
 
-                            {/* INNER GLOW */}
-                            <div className="absolute w-[60px] h-[60px] rounded-full bg-cyan-400/20 blur-2xl" />
+                                <div className="absolute w-[120px] h-[120px] rounded-full border border-cyan-300/20" />
 
-                            {/* AVATAR */}
-                            <div className="relative z-10 flex flex-col items-center">
+                                <div className="absolute w-[60px] h-[60px] rounded-full bg-cyan-400/20 blur-2xl" />
 
-                                <div className="w-[18px] h-[18px] rounded-full bg-cyan-300/80 shadow-[0_0_20px_rgba(34,211,238,0.8)]" />
+                                <div className="relative z-10 flex flex-col items-center">
 
-                                <div className="w-[28px] h-[45px] rounded-full border border-cyan-300/40 bg-cyan-300/10 backdrop-blur-sm mt-1" />
+                                    <div className="w-[18px] h-[18px] rounded-full bg-cyan-300/80 shadow-[0_0_20px_rgba(34,211,238,0.8)]" />
+
+                                    <div className="w-[28px] h-[45px] rounded-full border border-cyan-300/40 bg-cyan-300/10 backdrop-blur-sm mt-1" />
+
+                                </div>
 
                             </div>
 
-                        </div>
+                        )}
 
                         {/* WEATHER STATUS */}
                         <div className="absolute top-6 right-6 bg-black/40 border border-white/10 backdrop-blur-md rounded-2xl px-4 py-3">
@@ -298,7 +384,7 @@ export default function LiveRoom() {
                             </p>
 
                             <h3 className="text-xl font-semibold mt-1">
-                                Rain
+                                {simulationState.weather}
                             </h3>
 
                             <p className="text-cyan-300 text-sm mt-1">
@@ -307,31 +393,71 @@ export default function LiveRoom() {
 
                         </div>
 
-                        {/* DEVICE STATUS AC CARD */}
-                        <div className="absolute top-[160px] left-[40px] bg-black/40 border border-cyan-400/20 backdrop-blur-xl rounded-2xl px-4 py-3">
+                        <DeviceCard
+                            title="Air Conditioner"
+                            value="24°C"
+                            status="ON"
+                            top="140px"
+                            left="40px"
+                        />
 
-                            <p className="text-white/50 text-xs">
-                                Air Conditioner
-                            </p>
+                        <DeviceCard
+                            title="Workstation"
+                            value="124W"
+                            status="ACTIVE"
+                            top="170px"
+                            left="330px"
+                        />
 
-                            <div className="flex items-center justify-between gap-6 mt-2">
+                        <DeviceCard
+                            title="Rice Cooker"
+                            value="210W"
+                            status="COOKING"
+                            top="270px"
+                            left="1085px"
+                            color="orange"
+                        />
 
-                                <div>
-                                    <h3 className="text-cyan-300 text-xl font-semibold">
-                                        24°C
-                                    </h3>
+                        <DeviceCard
+                            title="PIR Sensor"
+                            value="Occupancy"
+                            status="Detected"
+                            top="620px"
+                            left="490px"
+                        />
 
-                                    <p className="text-green-400 text-sm mt-1">
-                                        ON
-                                    </p>
-                                </div>
+                        {/* SENSOR NODES */}
 
-                                <div className="w-3 h-3 rounded-full bg-cyan-400 animate-pulse" />
+                        <SensorNode
+                            label="S1 PIR"
+                            top="540px"
+                            left="520px"
+                            active={simulationState.occupancy}
+                        />
 
-                            </div>
+                        <SensorNode
+                            label="S2 Temp"
+                            top="430px"
+                            left="480px"
+                        />
 
-                        </div>
+                        <SensorNode
+                            label="S3 Outdoor Lux"
+                            top="120px"
+                            left="300px"
+                        />
 
+                        <SensorNode
+                            label="S4 Indoor Lux"
+                            top="350px"
+                            left="600px"
+                        />
+
+                        <SensorNode
+                            label="S5 Door"
+                            top="290px"
+                            left="880px"
+                        />
 
                         {/* ROOM TITLE */}
                         <div className="absolute top-6 left-6 bg-black/40 border border-white/10 backdrop-blur-md rounded-2xl px-5 py-3">
@@ -393,7 +519,7 @@ export default function LiveRoom() {
                                     </p>
 
                                     <h2 className="text-2xl font-semibold mt-1">
-                                        Resting
+                                        {simulationState.activity}
                                     </h2>
                                 </div>
 

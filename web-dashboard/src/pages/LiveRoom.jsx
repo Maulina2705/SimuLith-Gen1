@@ -223,30 +223,81 @@ export default function LiveRoom() {
 
                         )}
 
-                        <DeviceCard
-                            title="Workstation"
-                            value="124W"
-                            status="ACTIVE"
-                            top="170px"
-                            left="330px"
+                        <div
+                            className="
+                                absolute
+                                top-[170px]
+                                left-[330px]
+                                w-[140px]
+                                h-[90px]
+                                z-40
+                            "
+                            onMouseEnter={() => setHoveredDevice("pc")}
+                            onMouseLeave={() => setHoveredDevice(null)}
                         />
 
-                        <DeviceCard
-                            title="Rice Cooker"
-                            value="210W"
-                            status="COOKING"
-                            top="270px"
-                            left="1085px"
-                            color="orange"
+                        {hoveredDevice === "pc" && (
+
+                            <DeviceCard
+                                title="Personal Computer (PC)"
+                                value="124W"
+                                status="ACTIVE"
+                                top="170px"
+                                left="330px"
+                            />
+
+                        )}
+
+                        <div
+                            className="
+                                absolute
+                                top-[270px]
+                                left-[1085px]
+                                w-[140px]
+                                h-[90px]
+                                z-40
+                            "
+                            onMouseEnter={() => setHoveredDevice("ricecook")}
+                            onMouseLeave={() => setHoveredDevice(null)}
                         />
 
-                        <DeviceCard
-                            title="PIR Sensor"
-                            value="Occupancy"
-                            status="Detected"
-                            top="620px"
-                            left="490px"
+                        {hoveredDevice === "ricecook" && (
+
+                            <DeviceCard
+                                title="Rice Cooker"
+                                value="210W"
+                                status="COOKING"
+                                top="270px"
+                                left="1085px"
+                                color="orange"
+                            />
+
+                        )}
+
+                        <div
+                            className="
+                                absolute
+                                top-[620px]
+                                left-[490px]
+                                w-[140px]
+                                h-[90px]
+                                z-40
+                            "
+                            onMouseEnter={() => setHoveredDevice("pir")}
+                            onMouseLeave={() => setHoveredDevice(null)}
                         />
+
+                        {hoveredDevice === "pir" && (
+
+                            <DeviceCard
+                                title="PIR Sensor"
+                                value="Occupancy"
+                                status="Detected"
+                                top="620px"
+                                left="490px"
+                            />
+
+                        )}
 
                         {/* SENSOR NODES */}
 

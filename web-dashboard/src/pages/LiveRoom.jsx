@@ -232,7 +232,7 @@ export default function LiveRoom() {
                                     rounded-full blur-[100px]
                                     transition-all duration-1000
 
-                                    ${mockWorldState.weather.type === "Rain"
+                                    ${mockWorldState.weather.type.includes("Rain")
                                         ? "bg-cyan-400/20"
                                         : "bg-orange-300/10"
                                     }
@@ -257,7 +257,7 @@ export default function LiveRoom() {
                         </div>
 
                         {/* AC AIRFLOW */}
-                        {mockWorldState.devices.ac && (
+                        {mockWorldState.devices.ac.state === "ON" && (
 
                             <div className="absolute top-[170px] left-[70px]">
 
@@ -407,7 +407,7 @@ export default function LiveRoom() {
                                     </p>
 
                                     <h3 className="text-2xl font-semibold text-cyan-300">
-                                        24.6°C
+                                        {mockWorldState.environment.temperature}°C
                                     </h3>
                                 </div>
 
@@ -417,7 +417,7 @@ export default function LiveRoom() {
                                     </p>
 
                                     <h3 className="text-2xl font-semibold text-cyan-300">
-                                        58%
+                                        {mockWorldState.environment.humidity}%
                                     </h3>
                                 </div>
 
@@ -453,7 +453,7 @@ export default function LiveRoom() {
                                     </p>
 
                                     <h2 className="text-2xl font-semibold mt-1">
-                                        Rain
+                                        {mockWorldState.weather.type}
                                     </h2>
                                 </div>
 

@@ -119,7 +119,15 @@ export default function LiveRoom() {
 
                                         <ResponsiveContainer width="100%" height="100%">
 
-                                            <LineChart data={history}>
+                                            <LineChart
+                                                data={[
+                                                    { temp: 24.2 },
+                                                    { temp: 24.4 },
+                                                    { temp: 24.5 },
+                                                    { temp: 24.6 },
+                                                    { temp: 24.6 }
+                                                ]}
+                                            >
 
                                                 <Line
                                                     type="monotone"

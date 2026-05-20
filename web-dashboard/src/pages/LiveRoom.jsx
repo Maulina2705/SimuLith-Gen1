@@ -1,5 +1,4 @@
 import mockWorldState from "../data/mockWorldState"
-import { useEffect, useState } from "react"
 
 import {
     LineChart,
@@ -176,11 +175,10 @@ export default function LiveRoom() {
 
                     {/* ROOM VIEW */}
                     <div className="bg-[#101c30] border border-cyan-400/10 rounded-[40px] relative overflow-hidden shadow-2xl min-h-[760px]">
-
                         {/* ROOM IMAGE */}
                         <RoomBase />
 
-                        {/* OVERLAY */}
+                        {/* AMBIENT LAYER */}
                         <AmbientLayer world={mockWorldState} />
 
                         {/* AC AIRFLOW */}

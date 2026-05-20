@@ -10,6 +10,7 @@ import DeviceCard from "../components/ui/DeviceCard"
 import SensorNode from "../components/ui/SensorNode"
 import RoomBase from "../components/room/RoomBase"
 import AmbientLayer from "../components/room/AmbientLayer"
+import DeviceEffects from "../components/room/DeviceEffects"
 
 export default function LiveRoom() {
 
@@ -181,26 +182,8 @@ export default function LiveRoom() {
                         {/* AMBIENT LAYER */}
                         <AmbientLayer world={mockWorldState} />
 
-                        {/* AC AIRFLOW */}
-                        {mockWorldState.devices.ac.state === "ON" && (
-
-                            <div className="absolute top-[170px] left-[70px]">
-
-                                <div className="relative w-[220px] h-[120px]">
-
-                                    <div className="absolute w-[180px] h-[2px] bg-cyan-300/40 blur-sm rounded-full top-2 animate-pulse" />
-
-                                    <div className="absolute w-[160px] h-[2px] bg-cyan-300/30 blur-sm rounded-full top-8 animate-pulse" />
-
-                                    <div className="absolute w-[190px] h-[2px] bg-cyan-300/20 blur-sm rounded-full top-14 animate-pulse" />
-
-                                    <div className="absolute w-[150px] h-[2px] bg-cyan-300/30 blur-sm rounded-full top-20 animate-pulse" />
-
-                                </div>
-
-                            </div>
-
-                        )}
+                        {/* DEVICE EFFECTS */}
+                        <DeviceEffects world={mockWorldState} />
 
                         {/* OCCUPANCY VISUALIZATION */}
                         {mockWorldState.human.occupancy && (

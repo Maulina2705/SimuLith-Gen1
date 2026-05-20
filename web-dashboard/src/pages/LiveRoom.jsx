@@ -1,4 +1,5 @@
 import mockWorldState from "../data/mockWorldState"
+import { useState } from "react"
 
 import {
     LineChart,
@@ -14,6 +15,8 @@ import DeviceEffects from "../components/room/DeviceEffects"
 import PresenceLayer from "../components/room/PresenceLayer"
 
 export default function LiveRoom() {
+
+    const [hoveredDevice, setHoveredDevice] = useState(null)
 
     return (
         <div className="w-screen h-screen bg-[#08111f] flex">
@@ -206,13 +209,19 @@ export default function LiveRoom() {
 
                         </div>
 
-                        <DeviceCard
-                            title="Air Conditioner"
-                            value="24°C"
-                            status="ON"
-                            top="140px"
-                            left="40px"
-                        />
+                        <div className=" absolute top-[140px] left-[40px] w-[120px] h-[80px] z-40 " onMouseEnter={() => setHoveredDevice("ac")} onMouseLeave={() => setHoveredDevice(null)} />
+
+                        {hoveredDevice === "ac" && (
+
+                            <DeviceCard
+                                title="Air Conditioner"
+                                value="24°C"
+                                status="ON"
+                                top="140px"
+                                left="40px"
+                            />
+
+                        )}
 
                         <DeviceCard
                             title="Workstation"

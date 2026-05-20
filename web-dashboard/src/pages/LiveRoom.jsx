@@ -1,3 +1,4 @@
+import mockWorldState from "../data/mockWorldState"
 import { useEffect, useState } from "react"
 import roomBase from "../assets/room-base.png"
 
@@ -7,95 +8,10 @@ import {
     ResponsiveContainer
 } from "recharts"
 
-import DeviceCard from "../components/DeviceCard"
-import SensorNode from "../components/SensorNode"
+import DeviceCard from "../components/ui/DeviceCard"
+import SensorNode from "../components/ui/SensorNode"
 
 export default function LiveRoom() {
-
-    const [simulationState, setSimulationState] = useState({
-        temperature: 24.6,
-        humidity: 58,
-        power: 436,
-        occupancy: false,
-        weather: "Rain",
-        activity: "Resting",
-        acStatus: false,
-        currentTime: "14:35",
-    })
-
-    const [history, setHistory] = useState([
-        { temp: 24.6 },
-        { temp: 24.7 },
-        { temp: 24.5 },
-        { temp: 24.8 },
-        { temp: 24.6 },
-    ])
-
-    useEffect(() => {
-
-        const interval = setInterval(() => {
-
-            setSimulationState(prev => {
-
-                const updated = {
-
-                    ...prev,
-                    activity:
-                        prev.power > 550
-                            ? "Cooking"
-                            : prev.occupancy
-                                ? "Working"
-                                : "Resting",
-
-                    temperature:
-                        +(prev.temperature + (Math.random() * 0.6 - 0.3)).toFixed(1),
-
-                    humidity:
-                        Math.max(
-                            40,
-                            Math.min(
-                                80,
-                                +(prev.humidity + (Math.random() * 2 - 1)).toFixed(0)
-                            )
-                        ),
-
-                    power:
-                        Math.max(
-                            200,
-                            Math.min(
-                                700,
-                                Math.floor(prev.power + (Math.random() * 60 - 30))
-                            )
-                        ),
-
-                    occupancy: Math.random() > 0.2,
-
-                    acStatus: Math.random() > 0.3,
-                }
-
-                setHistory(prevHistory => {
-
-                    const updatedHistory = [
-                        ...prevHistory,
-                        { temp: updated.temperature }
-                    ]
-
-                    if (updatedHistory.length > 20) {
-                        updatedHistory.shift()
-                    }
-
-                    return updatedHistory
-
-                })
-
-                return updated
-            })
-
-        }, 2000)
-
-        return () => clearInterval(interval)
-
-    }, [])
 
     return (
         <div className="w-screen h-screen bg-[#08111f] flex">
@@ -196,7 +112,7 @@ export default function LiveRoom() {
                                     </p>
 
                                     <h2 className="text-4xl font-semibold mt-1 transition-all duration-500">
-                                        {simulationState.temperature}°C
+                                        {mockWorldState.environment.temperature}°C
                                     </h2>
 
                                     <div className="h-[50px] mt-3">
@@ -227,7 +143,7 @@ export default function LiveRoom() {
                                     </p>
 
                                     <h2 className="text-4xl font-semibold mt-1 transition-all duration-500">
-                                        {simulationState.humidity}%
+                                        {mockWorldState.environment.humidity}%
                                     </h2>
                                 </div>
 
@@ -240,7 +156,7 @@ export default function LiveRoom() {
                                     </p>
 
                                     <h2 className="text-4xl font-semibold mt-1 transition-all duration-500">
-                                        {simulationState.power}W
+                                        {mockWorldState.energy.totalPower}W
                                     </h2>
                                 </div>
 
@@ -308,7 +224,7 @@ export default function LiveRoom() {
                                     rounded-full blur-[100px]
                                     transition-all duration-1000
 
-                                    ${simulationState.weather === "Rain"
+                                    ${mockWorldState.weather.type === "Rain"
                                         ? "bg-cyan-400/20"
                                         : "bg-orange-300/10"
                                     }
@@ -323,7 +239,7 @@ export default function LiveRoom() {
                                     rounded-full blur-[120px]
                                     transition-all duration-1000
 
-                                    ${simulationState.power > 500
+                                    ${mockWorldState.energy.totalPower > 500
                                         ? "bg-purple-500/20"
                                         : "bg-blue-500/10"
                                     }
@@ -333,7 +249,7 @@ export default function LiveRoom() {
                         </div>
 
                         {/* AC AIRFLOW */}
-                        {simulationState.acStatus && (
+                        {mockWorldState.devices.ac && (
 
                             <div className="absolute top-[170px] left-[70px]">
 
@@ -354,7 +270,7 @@ export default function LiveRoom() {
                         )}
 
                         {/* OCCUPANCY VISUALIZATION */}
-                        {simulationState.occupancy && (
+                        {mockWorldState.human.occupancy && (
 
                             <div className="absolute bottom-[120px] left-[52%] -translate-x-1/2 flex items-center justify-center">
 
@@ -384,7 +300,7 @@ export default function LiveRoom() {
                             </p>
 
                             <h3 className="text-xl font-semibold mt-1">
-                                {simulationState.weather}
+                                {mockWorldState.weather.type}
                             </h3>
 
                             <p className="text-cyan-300 text-sm mt-1">
@@ -432,7 +348,7 @@ export default function LiveRoom() {
                             label="S1 PIR"
                             top="540px"
                             left="520px"
-                            active={simulationState.occupancy}
+                            active={mockWorldState.human.occupancy}
                         />
 
                         <SensorNode
@@ -519,7 +435,7 @@ export default function LiveRoom() {
                                     </p>
 
                                     <h2 className="text-2xl font-semibold mt-1">
-                                        {simulationState.activity}
+                                        {mockWorldState.human.activity}
                                     </h2>
                                 </div>
 
